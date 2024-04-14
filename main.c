@@ -9,13 +9,22 @@
 // memory.
 
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-    int numFrames;
-
     // checking for the correct amount of arguments in input
     if (argc != 2) {
         printf("Incorrect argument input.\n");
+        return 1;
+    }
+
+    char *pageRefFile = argv[1];
+    int numFrames = atoi(argv[1]);
+
+    // opening file
+    FILE *file = fopen(pageRefFile, "r");
+    if (file == NULL) {
+        perror("Error opening file");
         return 1;
     }
 
