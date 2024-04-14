@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAX_FRAMES 10
+
 int main(int argc, char *argv[]) {
     // checking for the correct amount of arguments in input
     if (argc != 2) {
@@ -29,9 +31,19 @@ int main(int argc, char *argv[]) {
     }
 
     // checking for correct number of frames
-    if (numFrames < 1 || numFrames > 10) {
+    if (numFrames < 1 || numFrames > MAX_FRAMES) {
         printf("Number of frames should be between 1 and 10 inclusive");
         return 1;
     }
+
+    // read page references from the file
+    int pages[MAX_FRAMES * 10];
+    int num_pages = 0;
+    int page;
+    while (fscanf(file, "%d", &page) == 1) {
+        pages[num_pages++] = page;
+    }
+    fclose(file);
+
 
 }
